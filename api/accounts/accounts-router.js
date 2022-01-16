@@ -1,7 +1,5 @@
 const router = require('express').Router()
 
-
-const express = require('express')
 const Account = require('./accounts-model')
 const md = require('./accounts-middleware.js');
 
@@ -16,7 +14,7 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get('/:id', md.checkAccountId, 
-  async (req, res, next) => {
+  async (req, res) => {
   res.json(req.account)
 })
 
@@ -55,7 +53,7 @@ router.delete('/:id',
 })
 
 
-router.use((err, req, res, next) => {
+router.use((err, req, res) => {
   res.status(err.status || 500).json({ message: err.message,})
 })
 
