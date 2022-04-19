@@ -5,10 +5,8 @@ const getAll = () => {
   return db('accounts')
 }
 
-async function getById(id) {
-  const result = await db('accounts')
-    .where('id', id).first()
-  return result
+const getById = id => {
+  return db('accounts').where('id', id).first()
 }
 
 async function create(account) {
@@ -17,19 +15,21 @@ async function create(account) {
   return getById(id)
 }
 
-async function updateById(id, account) {
-  await db('accounts')
-    .where('id', id)
-    .update(account)
+const updateById = async (id, account) => {
+  await db('accounts').where('id', id).update(account)
   return getById(id)
 }
 
-async function deleteById(id) {
-  const toDelete = await getById(id)
-  await db('accounts')
-    .where({ id })
-    .del()
-  return toDelete
+// async function deleteById(id) {
+//   const toDelete = await getById(id)
+//   await db('accounts')
+//     .where({ id })
+//     .del()
+//   return toDelete
+// }
+
+const deleteById = id => {
+  return db('accounts').where('id', id).del()
 }
 
 

@@ -17,10 +17,6 @@ exports.checkAccountPayload = (req, res, next) => {
     res.status(400).json({ message: 'budget of account must be a number'})
   } else if(budget < 0 || budget > 1000000) {
     res.status(400).json({ message: 'budget of account is too large or too small'})
-  } 
-
-  if (error.message) {
-    next(error)
   } else {
     next()
   }
@@ -48,7 +44,8 @@ exports.checkAccountId = async (req, res, next) => {
       next({ status: 404, message: 'account not found'})
     } else {
       req.account = account
-      next()    }
+      next()    
+    }
   } catch (err) {
     next(err)
   }
